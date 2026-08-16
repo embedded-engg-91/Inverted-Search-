@@ -1,0 +1,9 @@
+#0;are;2;t1.txt;1;t2.txt;2;am;1;t2.txt;2;#
+#1;been;1;t3.txt;1;#
+#5;file;1;t3.txt;1;#
+#7;Hi;1;t1.txt;1;hello;2;t1.txt;2;t2.txt;1;hi;1;t1.txt;1;how;1;t2.txt;1;has;1;t3.txt;1;#
+#12;modified;1;t3.txt;1;#
+#13;new;1;t4.txt;1;#
+#19;This;1;t3.txt;1;testing;1;t13.txt;2;testinf;1;t13.txt;1;#
+#22;word;1;t4.txt;1;#
+#25;zebra;1;t4.txt;1;#
