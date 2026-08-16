@@ -2,8 +2,8 @@
 
 void search(mnode *arr[],Slist *head, char *word)
 {
-    /*first step is to find the key where it woulf be presnet*/
-    int key= tolower(word[0])-'a';//this is where the element would be present
+    
+    int key= tolower(word[0])-'a';
     if(arr[key]==NULL)
     {
         printf("The word is not present\n");
@@ -11,28 +11,28 @@ void search(mnode *arr[],Slist *head, char *word)
     }
     else
     {
-        //key is ont null means has atleasset one mainnode
+        
         mnode *m_temp=arr[key];
-        while(m_temp!=NULL) //tarversing the main node
+        while(m_temp!=NULL) 
         {
-            /* first check whteher it is art of minnode*/
-            if(strcmp(m_temp->word, word) ==0) //word match in currebt main
+            
+            if(strcmp(m_temp->word, word) ==0) 
             {
                 printf("The word %s is present in %d files\n", word, m_temp->filecount);
-                //now we need to peint in which all files and what is the count in each file
+                
                 snode *s_temp=m_temp->slink;
                 while(s_temp!=NULL)
                 {
-                    //just print the details like filename -> wordcount
+                    
                     printf("%s -> %d", s_temp->filename, s_temp->wordcount);
                     printf("\n");
                     s_temp=s_temp->slink;
                 }
-                return; //completed the intended 
+                return; 
             }
-            m_temp=m_temp->mlink; //see if it did noot match in cuurent mainnide we shift the main node and search in next main node
+            m_temp=m_temp->mlink; 
         }
-        if(m_temp==NULL) //come till here means did not match in any mtemp na 
+        if(m_temp==NULL) 
         {
             printf("Word is not present\n");
             return;
