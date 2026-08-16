@@ -8,18 +8,18 @@ Status restore(mnode *arr[])
     char filename[100];
     scanf("%[^\n]", filename);
     getchar();
-    char *str = strrchr(filename, '.'); // find the dot char from the last
+    char *str = strrchr(filename, '.'); 
     if (str == NULL)
     {
         printf("Invalid filename. The file extension must end in .txt\nPlease try again\n");
         return FAILURE;
     }
-    if ((strcmp(str, ".txt")) != 0) // not zero means need to ask to enter the valid filename
+    if ((strcmp(str, ".txt")) != 0) 
     {
         printf("Invalid filename. The file extension must end in .txt\nPlease try again\n");
         return FAILURE;
     }
-    FILE *fp = fopen(filename, "r"); // always open in read mode
+    FILE *fp = fopen(filename, "r"); 
     if (fp == NULL)
     {
         return FILE_NOT_FOUND;
@@ -27,55 +27,55 @@ Status restore(mnode *arr[])
     else
     {
         char line[100];
-        while (fgets(line, sizeof(line), fp)) /* until we can read a line adn eof is not reached*/
+        while (fgets(line, sizeof(line), fp)) 
         {
-            /*get index*/
+            
             char *tok = strtok(line, "#;");
-            int ind = atoi(tok); // the very first element in the line stored was th eindex na
+            int ind = atoi(tok); 
 
-            /*get word */
+            
             char *fword = strtok(NULL, "#;");
 
-            /*create m node */
+            
             mnode *new_node = malloc(sizeof(mnode));
             new_node->mlink = NULL;
             new_node->slink = NULL;
             strcpy(new_node->word, fword);
 
-            /*put mnode in hashtable or append it to existing mnode list */
-            if (arr[ind] == NULL) /*if the index in array  turns out to be null then*/
+            
+            if (arr[ind] == NULL) 
             {
-                /* only mnode no subnode attached to it */
+                
 
-                arr[ind] = new_node; // putting mnode in hashtable
+                arr[ind] = new_node; 
             }
             else
             {
-                mnode *temp = arr[ind]; // arr if ind is pointing towards on mnode only na
+                mnode *temp = arr[ind]; 
                 mnode *prev = NULL;
                 while (temp != NULL)
                 {
                     prev = temp;
                     temp = temp->mlink;
                 }
-                prev->mlink = new_node; /* last mnode line with new node*/
+                prev->mlink = new_node; 
             }
 
-            /*get filecount */
+            
             tok = strtok(NULL, "#;");
             ind = atoi(tok);
-            // also need to store the filecount into the mainlink
+            
             new_node->filecount = ind;
             for (int i = 0; i < ind; i++)
             {
                 char *file = strtok(NULL, "#;");
-                snode *new_s = create_snode(file); // create a subnode for that file
+                snode *new_s = create_snode(file); 
                 int wc = atoi(strtok(NULL, "#;"));
                 strcpy(new_s->filename, file);
                 new_s->wordcount = wc;
-                // the next slink is null by default
+                
 
-                if (new_node->slink == NULL) /*need to update the sublinks in mainlink na */
+                if (new_node->slink == NULL) 
                 {
                     new_node->slink = new_s;
                 }
@@ -93,7 +93,7 @@ Status restore(mnode *arr[])
             }
         }
     }
-    restored=1; //so that we can create again after restoring
-    db_created=1; //to set it here as well 
+    restored=1; 
+    db_created=1; 
     return SUCCESS;
 }
