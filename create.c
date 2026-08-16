@@ -2,28 +2,28 @@
 
 int db_created = 0;
 
-Status create_database(mnode *arr[], Slist *head)//head is the list containing file names, here we using pass by value concept
+Status create_database(mnode *arr[], Slist *head)
 {
    char buffer[size];
-   while(head) //untit he list becomes empty 
+   while(head) 
    {
         FILE *fp=fopen(head->filename,"r");
-        if(fp==NULL) return FAILURE; //wont happen cuz inouts are alreaddy validate
-        while(fscanf(fp, "%s", buffer) == 1) //fscanf returns the no of cahrs successfully read
+        if(fp==NULL) return FAILURE; 
+        while(fscanf(fp, "%s", buffer) == 1) 
         {
             int ind=tolower(buffer[0])-'a';
-            if(arr[ind]==NULL) /* case 1 */
+            if(arr[ind]==NULL) 
             {
                 mnode *new=create_mnode(buffer, head->filename);
-                arr[ind]=new; //this is important we must update the link here after first insertion 
+                arr[ind]=new; 
             }
             else
             {
-                /* case 2 the index of the database is not null*/
-                //travere main node and check whehter the word exist/not 
-                mnode *addrs=match_word(buffer, arr[ind]); //main node only wwe passing 
+                
+                
+                mnode *addrs=match_word(buffer, arr[ind]); 
 
-                if(addrs==NULL) //word does not exist 
+                if(addrs==NULL) 
                 {
                     mnode *temp = arr[ind];
 
@@ -34,20 +34,20 @@ Status create_database(mnode *arr[], Slist *head)//head is the list containing f
                 }
                 else
                 {
-                    //traverse mainnocde and check if the filename in the sublinks matches or not 
-                    snode *filename=match_filename(head->filename, addrs); //cuz addrs contains the addrs of the mainnode corresponding to current word 
+                    
+                    snode *filename=match_filename(head->filename, addrs); 
                     if( filename!=NULL)
                     {
-                        /* increment the wordcount in that sublink*/
+                        
                         filename->wordcount+=1;
 
                     }
-                    else /* if the file names does not match*/
+                    else 
                     {
-                        //ALSO UPDATE THE FILE COUNT IN MAINNODE
+                        
                          snode *new = create_snode(head->filename);
 
-                        /* Go to the last subnode */
+                        
                         snode *temp = addrs->slink;
 
                         while(temp->slink != NULL)
@@ -55,10 +55,10 @@ Status create_database(mnode *arr[], Slist *head)//head is the list containing f
                             temp = temp->slink;
                         }
 
-                        /* Link new subnode */
+                        
                         temp->slink = new;
 
-                        /* One more file contains this word */
+                        
                         addrs->filecount++;
                         
 
