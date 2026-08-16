@@ -8,27 +8,27 @@
 
 #define size 50
 
-/* Main node structure definiton*/
+
 typedef struct mainnode
 {
-    char word[20]; //the word 
-    int filecount; //in how many files the word has appeared
-    struct mainnode *mlink; //link to next mainnnode
-    struct subnode *slink; //link to next sublink
+    char word[20]; 
+    int filecount; 
+    struct mainnode *mlink; 
+    struct subnode *slink; 
 }mnode;
 
-/* subnode structure defintion*/
+
 typedef struct subnode
 {
-    int wordcount;    //how many times the word appeared in the current file
-    char filename[20]; //the current file name 
-    struct subnode *slink; ///next file link
+    int wordcount;    
+    char filename[20]; 
+    struct subnode *slink; 
 }snode;
 
 typedef struct node
 {
-    char *filename; //name of the file 
-    struct node *link; //link to next file name 
+    char *filename; 
+    struct node *link; 
 }Slist;
 
 typedef enum
