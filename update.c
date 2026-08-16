@@ -36,7 +36,7 @@ Status update(mnode *arr[], Slist **head)
 
     newfiles[newfc] = NULL;
 
-    /* to the old last node */
+    
     Slist *old_tail = *head;
 
     if (old_tail != NULL)
@@ -45,7 +45,7 @@ Status update(mnode *arr[], Slist **head)
             old_tail = old_tail->link;
     }
 
-    /* read_validate adds valid new files to head */
+    
     if (read_validate(newfiles, head) != SUCCESS)
     {
         for (int i = 0; i < newfc; i++)
@@ -54,12 +54,12 @@ Status update(mnode *arr[], Slist **head)
         return FAILURE;
     }
 
-    /* Find the beginning of the newly added portion*/
+    
     Slist *newhead;
 
     if (old_tail == NULL)
     {
-        /*  no old files means*/
+        
         newhead = *head;
     }
     else
@@ -67,16 +67,16 @@ Status update(mnode *arr[], Slist **head)
         newhead = old_tail->link;
     }
 
-    /* Temporarily detach the new files from the old list */
+    
     if (old_tail != NULL)
         old_tail->link = NULL;
 
-    /* to process only the newly added files*/
+    
     if (newhead != NULL)
     {
         if (create_database(arr, newhead) != SUCCESS)
         {
-            /* reconnect before returning */
+            
             if (old_tail != NULL)
                 old_tail->link = newhead;
 
@@ -87,7 +87,7 @@ Status update(mnode *arr[], Slist **head)
         }
     }
 
-    /* Reconnect the new files to the original list*/
+    
     if (old_tail != NULL)
     {
         old_tail->link = newhead;
