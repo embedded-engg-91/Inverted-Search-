@@ -27,8 +27,8 @@ int main(int argc, char *argv[])
     read_validate(argv, &head);
     printf("\n[+] Files loaded successfully.\n\n");
 
-    // print_list(head);
-    mnode *arr[27] = {NULL}; // array of STRUCTRE POINTERS is ur database
+    
+    mnode *arr[27] = {NULL}; 
     int choice;
     do
     {
@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
             printf("[!] Invalid input.\n");
             printf("[!] Please enter a number between 1 and 7.\n");
 
-            /* clear invalid input */
+            
             while (getchar() != '\n')
                 ;
 
@@ -63,15 +63,15 @@ int main(int argc, char *argv[])
         printf("\n");
         switch (choice)
         {
-            /*Create Database*/
+            
 
         case 1:
-            if (db_created == 0) /* cuz database shall be create donly once */
+            if (db_created == 0) 
             {
-                if (create_database(arr, head) == SUCCESS) // head is the list containing file names
+                if (create_database(arr, head) == SUCCESS) 
                     printf("The Database has been successfully created\n");
             }
-            else if (restored == 1 && db_created == 1) /* databse was created by restoring */
+            else if (restored == 1 && db_created == 1) 
             {
                 if (update(arr, &head) == SUCCESS)
                     printf("Database Updated Successfully for new and valid files!!!\n");
@@ -89,18 +89,18 @@ int main(int argc, char *argv[])
 
             break;
 
-        case 2: /* Display the Database*/
+        case 2: 
 
-            if (db_created == 1) /* to display first database shall exist */
+            if (db_created == 1) 
                 display(arr, head);
             else
                 printf("Please either create or restore the database first!!!\n");
 
             break;
 
-        case 3: /* Search Element */
+        case 3: 
         {
-            if (db_created == 1) /*to search also first databse shall exisst*/
+            if (db_created == 1) 
             {
                 char word[size];
                 printf("Enter the word you want to search\n");
@@ -117,8 +117,8 @@ int main(int argc, char *argv[])
         }
         break;
 
-        case 4:                  /*nSave the database into the backup file */
-            if (db_created == 1) /*to save also database shall exist first*/
+        case 4:                  
+            if (db_created == 1) 
             {
                 if (save(arr, head) == SUCCESS)
                     printf("Data Saved Successfully!!!\n");
@@ -128,7 +128,7 @@ int main(int argc, char *argv[])
 
             break;
 
-        case 5: /* upadte the lsit*/
+        case 5: 
             if (update(arr, &head) == SUCCESS)
                 printf("Database Updated Successfully!!!\n");
             else
@@ -138,7 +138,7 @@ int main(int argc, char *argv[])
             }
             break;
 
-        case 6: /*restore from  a backup file */
+        case 6: 
             if (restore(arr) == SUCCESS)
             {
                 printf("The database has been restored with the contents of the file.\n");
