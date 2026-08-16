@@ -1,20 +1,20 @@
 #include "inverted.h"
 
-Status insert_at_last(Slist **head, char *argv)//changes should be reflected in main 
+Status insert_at_last(Slist **head, char *argv)
 {
     Slist *new_node=malloc(sizeof(Slist));
     if(new_node==NULL)
     {
-        return FAILURE; //memory allocation failure 
+        return FAILURE; 
     }
     new_node->filename=argv;
     new_node->link=NULL;
-    if((*head)==NULL)//means list is empty 
+    if((*head)==NULL)
     {
         *head=new_node; 
         return SUCCESS; 
     }
-    Slist *temp= (*head); //to not lose the head ptr
+    Slist *temp= (*head); 
     while(temp->link!=NULL)
     {
         temp=temp->link;
@@ -23,12 +23,12 @@ Status insert_at_last(Slist **head, char *argv)//changes should be reflected in 
     return SUCCESS;
 }
 
-Status find_node(Slist *head, char *filename) //we just nned to identily whther the filename is repeated or not 
+Status find_node(Slist *head, char *filename) 
 {
 	int count=1;
 	
-	while(head!=NULL) //no need of temp here cuz head that we have here is pass by val(*head not **head check) so 
-	{                   //changes we do to head here wont be reflected in main
+	while(head!=NULL) 
+	{                   
 	    if(strcmp(head->filename, filename) == 0)
 	    {
 	        return DUPLICATE;
@@ -58,43 +58,40 @@ void print_list(Slist *head)
     }
 }
 
-mnode *match_word(char *word, mnode *head) //only one index we have na so pass by value
+mnode *match_word(char *word, mnode *head) 
 {
-    /*
-    Case 1. Word is matched return the addrs 
-    Case 2. Word is not matched return the NULL
-    */
-   /* for this we traverse the mainlinks nodes */
+    
+   
    mnode *temp=head;
    while(head!=NULL)
    {
     if(strcmp(head->word,word) == 0)
     {
-        //means the word found 
+        
         return head;  
     }
     temp=head;
-    head=head->mlink; //note  word is stored inside the mainlink 
+    head=head->mlink; 
    }
    return NULL;
 }
 
 
-snode *match_filename(char *filename, mnode *head) //here inside head i have collected mainnode 
+snode *match_filename(char *filename, mnode *head) 
 {
-    /* noe we need to traverse till the sublinks is not null*/
+    
     snode *temp=head->slink;
     snode *prev=temp;
     while (temp!=NULL)
     {
        if(strcmp(temp->filename,filename) == 0)
         {
-            //means the filename is  found 
+            
             return temp; 
         }
         prev=temp;
-        temp=temp->slink; //note  word is stored inside the mainlink 
-        //so we must go there 
+        temp=temp->slink; 
+        
     }
     return NULL; 
     
