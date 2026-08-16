@@ -15,20 +15,20 @@ void display(mnode *arr[], Slist *head)
 
             while (m_temp != NULL)
             {
-                // to print the main node contents
+                
 
-                if (m_temp->slink != NULL) // means sublink exists
+                if (m_temp->slink != NULL) 
                 {
                     snode *s_temp = m_temp->slink;
 
-                    // Print main node details only once
+                    
                     printf("| %-5d | %-20s | %-9d |",
                            i, m_temp->word, m_temp->filecount);
 
                     while (s_temp != NULL)
                     {
-                        // pritf the filename first
-                        // then print the word count in the files
+                        
+                        
 
                         printf(" %-20s | %-17d |\n",
                                s_temp->filename, s_temp->wordcount);
@@ -47,6 +47,6 @@ void display(mnode *arr[], Slist *head)
         }
     }
 
-    // Bottom border to  close the table
+    
     printf("+-------+----------------------+-----------+----------------------+-------------------+\n");
 }
