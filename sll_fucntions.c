@@ -26,7 +26,6 @@ Status insert_at_last(Slist **head, char *argv)
 Status find_node(Slist *head, char *filename) 
 {
 	int count=1;
-	
 	while(head!=NULL) 
 	{                   
 	    if(strcmp(head->filename, filename) == 0)
